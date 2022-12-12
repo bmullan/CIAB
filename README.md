@@ -1,5 +1,5 @@
 # wg-cloud
-build a multi tenant cloud based on ubuntu lxc containers
+build a multi tenant wireguard vpn cloud service - based on ubuntu lxc containers
 
 ## prerequisits
 
