@@ -1,7 +1,12 @@
 # wg_cloud
 build a multi tenant cloud based on ubuntu lxc containers
 
-Usage: ./wg_cloud  [ host   ] [ install ] = installs all necessary software to build up the Wireguard VPN Cloud service
+## prerequisits
+
+
+## usage
+
+       ./wg_cloud  [ host   ] [ install ] = installs all necessary software to build up the Wireguard VPN Cloud service
                    [ status ]             = shows the status of all Wireguard VPN Cloud service tenants
                    [ help   ]             = shows all options in detail
 
