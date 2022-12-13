@@ -108,7 +108,13 @@ EOF
 tenant_install() {
 	echo "installing Wireguard Software to Tenant ${WGIF}"
         tenant_prep-inst
-	ping 10.${IFID}.0.2
+
+	echo -n "waiting for 10.${IFID}.0.2 to come up "
+	until $(ping -c1 10.${IFID}.0.2 &>/dev/null); do 
+		echo -n "."
+	done
+	echo " done"
+
 	lxc exec ${WGIF}-router01 /root/wg-tenant install 
 	rm wg-tenant.env
 	echo "lxc exec ${WGIF}-router01 /etc/wireguard/status.sh"
