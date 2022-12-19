@@ -159,6 +159,38 @@ EOF
 
 }
 
+start() {
+systemctl start wgui.path wgui.service wg-quick@wg0.service wgui-web.service
+}
+
+stop() {
+systemctl stop wgui.path wgui.service wg-quick@wg0.service wgui-web.service 
+}
+
+restart() {
+	stop
+	start
+}
+
+backup() {
+	cd /etc/wireguard
+	tar cvf $( date +%Y%m%d%H%M )-${WGIF}-db.tar db/
+}
+
+restore() {
+	cd /etc/wireguard
+	if [ -f "${WGIF}-db.tar" ]; then
+		stop
+		backup
+		rm -r db/
+		tar xvf ${WGIF}-db.tar db/
+		start
+	else
+		echo "unable to restore /etc/wireguard/${WGIF}-db.tar"
+		echo "file does not exists"
+	fi
+}
+
 status() {
 	echo ""
 	echo "Wireguard VPN Cloud "${WGIF}" Tenant"
@@ -176,9 +208,11 @@ help() {
 	echo ""
 	echo "Wireguard VPN Cloud "${WGIF}" Tenant"
 	echo ""
-	echo "Usage wg-tenant [ install | update ]"
-	echo "      wg-tenant [ status           ]"
-	echo "      wg-tenant [ version | help   ]"
+	echo "Usage wg-tenant [ install | update       ]"
+	echo "      wg-tenant [ start | stop | restart ]"
+	echo "      wg-tenant [ backup | restore       ]"
+	echo "      wg-tenant [ status                 ]"
+	echo "      wg-tenant [ version | help         ]"
 	echo ""
 }
 
@@ -188,7 +222,7 @@ case ${IFID} in
 	;;
 *)
 	case $1 in
-	install|status|version|help)
+	start|stop|restart|backup|restore|install|status|version|help)
 		$1
 		;;
 	*)

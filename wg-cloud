@@ -125,6 +125,28 @@ tenant_status() {
 	lxc exec ${WGIF}-router01 /etc/wireguard/status.sh
 }
 
+tenant_start() {
+	echo "starting Wireguard VPN Cloud Tenant ${WGIF}"
+	lxc exec ${WGIF}-router01 /root/wg-tenant start
+}
+
+tenant_stop() {
+	echo "stopping Wireguard VPN Cloud Tenant ${WGIF}"
+	lxc exec ${WGIF}-router01 /root/wg-tenant stop
+}
+
+tenant_restart() {
+	echo "restarting Wireguard VPN Cloud Tenant ${WGIF}"
+	lxc exec ${WGIF}-router01 /root/wg-tenant restart
+}
+
+tenant_backup() {
+	echo "Backup Config-Data Wireguard VPN Cloud Tenant ${WGIF}"
+	mkdir /root/${WGIF}
+	lxc exec ${WGIF}-router01 /root/wg-tenant backup
+	lxc file pull ${WGIF}-router01/etc/wireguard/*.tar /root/${WGIF}/*
+}
+
 host_install() {
 	echo "installing software packages"
 	apt-get update
@@ -244,6 +266,8 @@ help() {
 		echo "                   [ tenant ] [ id ] [ install   ] [ cloud-fqdn ] = installs all necessary software to build up the tenant"
 		echo "                   [ tenant ] [ id ] [ prep-inst ] [ cloud-fqdn ] = creates enviroment file for software installation"
         	echo "                   [ tenant ] [ id ] [ lxc | net ] [ add | del  ] = adds/deletes containter/network infrastructure for a tenant"   
+		echo "                   [ tenant ] [ id ] [ start | stop | restart   ] = starts/stops Wireguard VPN Cloud tenant"
+		echo "                   [ tenant ] [ id ] [ backup | restore         ] = backup/restore config-data of Wireguard VPN Cloud tenant"
 		echo "                   [ tenant ] [ id ] [ status    ]                = shows the status of a Wireguard VPN Cloud tenant"
 		;;
 	esac
@@ -269,7 +293,7 @@ tenant)
 				;;
 			esac
 		;;
-		del|status)
+		del|status|start|stop|restart|backup|restore)
 			$1_$3
 			;;
 		lxc|net)
