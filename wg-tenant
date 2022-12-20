@@ -3,7 +3,7 @@
 WGIF=wg${IFID}
 WGUIUSER=admin
 WGUIPORT=200${IFID}
-VERSION=0.1
+VERSION=0.2
 
 install() {
 	apt-get update
@@ -160,11 +160,17 @@ EOF
 }
 
 start() {
-systemctl start wgui.path wgui.service wg-quick@wg0.service wgui-web.service
+	echo ""
+	echo "starting Wireguard VPN Cloud "${WGIF}" Tenant"
+	echo ""
+	systemctl start wgui.path wgui.service wg-quick@wg0.service wgui-web.service
 }
 
 stop() {
-systemctl stop wgui.path wgui.service wg-quick@wg0.service wgui-web.service 
+	echo ""
+	echo "stopping Wireguard VPN Cloud "${WGIF}" Tenant"
+	echo ""
+	systemctl stop wgui.path wgui.service wg-quick@wg0.service wgui-web.service 
 }
 
 restart() {
@@ -173,21 +179,42 @@ restart() {
 }
 
 backup() {
+	echo ""
+	echo "backing up  Wireguard VPN Cloud "${WGIF}" Tenant"
+	echo ""
+	if [ -z "$1" ]; then
+		BACKUPFILE1=$( date +%Y%m%d%H%M )-${WGIF}-db.tar
+	else
+		BACKUPFILE1=$1
+	fi
+
 	cd /etc/wireguard
-	tar cvf $( date +%Y%m%d%H%M )-${WGIF}-db.tar db/
+	tar cf ${BACKUPFILE1} db/
+	echo ${BACKUPFILE1}" successfully created"
 }
 
 restore() {
+	echo ""
+	echo "restoring  Wireguard VPN Cloud "${WGIF}" Tenant"
+	echo ""
+
+	if [ -z "$1" ]; then
+		BACKUPFILE2=${WGIF}-db.tar
+	else
+		BACKUPFILE2=$1
+	fi
+
 	cd /etc/wireguard
-	if [ -f "${WGIF}-db.tar" ]; then
+	if [ -f "${BACKUPFILE2}" ]; then
 		stop
 		backup
 		rm -r db/
-		tar xvf ${WGIF}-db.tar db/
+		tar xvf ${BACKUPFILE2} db/
 		start
+		echo "/etc/wireguard/${BACKUPFILE2} successfully restored"
 	else
-		echo "unable to restore /etc/wireguard/${WGIF}-db.tar"
-		echo "file does not exists"
+		echo "unable to restore /etc/wireguard/${BACKUPFILE2}"
+		echo "file does not exist"
 	fi
 }
 
@@ -210,7 +237,7 @@ help() {
 	echo ""
 	echo "Usage wg-tenant [ install | update       ]"
 	echo "      wg-tenant [ start | stop | restart ]"
-	echo "      wg-tenant [ backup | restore       ]"
+	echo "      wg-tenant [ backup | restore       ] { file }" 
 	echo "      wg-tenant [ status                 ]"
 	echo "      wg-tenant [ version | help         ]"
 	echo ""
@@ -223,7 +250,7 @@ case ${IFID} in
 *)
 	case $1 in
 	start|stop|restart|backup|restore|install|status|version|help)
-		$1
+		$1 $2
 		;;
 	*)
 		help 1

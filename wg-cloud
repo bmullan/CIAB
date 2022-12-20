@@ -6,6 +6,7 @@ WGIF=wg${IFID}
 WGPORT=200${IFID}
 BRIDGEIF=br-${WGIF}
 BRIDGENET=10.${IFID}.0
+BACKUPFILE=$( date +%Y%m%d%H%M )-${WGIF}-db.tar
 
 tenant_net_add(){
 	echo "add ${BRIDGEIF}"
@@ -142,9 +143,19 @@ tenant_restart() {
 
 tenant_backup() {
 	echo "Backup Config-Data Wireguard VPN Cloud Tenant ${WGIF}"
-	mkdir /root/${WGIF}
-	lxc exec ${WGIF}-router01 /root/wg-tenant backup
-	lxc file pull ${WGIF}-router01/etc/wireguard/*.tar /root/${WGIF}/*
+
+	[ ! -d "/root/${WGIF}" ] && mkdir /root/${WGIF}
+	lxc exec ${WGIF}-router01 /root/wg-tenant backup ${BACKUPFILE}
+	lxc file pull ${WGIF}-router01/etc/wireguard/${BACKUPFILE} /root/${WGIF}/
+	lxc exec ${WGIF}-router01 rm /etc/wireguard/${BACKUPFILE}
+	cp /root/${WGIF}/${BACKUPFILE} /root/${WGIF}/${WGIF}-db.tar
+}
+
+tenant_restore() {
+	echo "Restore Config-Data Wireguard VPN Cloud Tenant ${WGIF}"
+
+	lxc file push /root/${WGIF}/${WGIF}-db.tar  ${WGIF}-router01/etc/wireguard/
+	lxc exec ${WGIF}-router01 /root/wg-tenant restore ${WGIF}-db.tar 
 }
 
 host_install() {
