@@ -3,7 +3,6 @@
 
 <center> Brian Mullan (bmulla.mail@gmail.com) May 2025</center>  
 
-<br>
 ### Architecture Description  
    
 CIAB MANO's use-case is to enable deployment of an Architecture that is:    
