@@ -30,10 +30,12 @@ When **incus admin init** is executed for the following Questions answer as indi
   
 **Change the  default Port for Incus remote server support** from **8443** to **8444** to prevent future conflict   
 with Docker & other environments later be installed on any of the Incus Host servers as many of those  
-applications which often default to use of Port 8443.   
+applications which often default to use of Port 8443.  
+
 <br></br>  
 ---  
-<br></br>  
+<br></br>
+
 ### MANO CLI commands:  
 
        ./wg-cloud  [ host   ] [ install    ] [ cloud-fqdn ] = installs all necessary software to build up the Wireguard VPN Cloud service  
