@@ -32,9 +32,11 @@ When **incus admin init** is executed for the following Questions answer as indi
 with Docker & other environments later be installed on any of the Incus Host servers as many of those  
 applications which often default to use of Port 8443.   
      
-<br>
----
-<br>
+<br>  
+
+---  
+
+<br>  
 
 ### MANO commands:  
 
