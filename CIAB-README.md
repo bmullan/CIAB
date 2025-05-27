@@ -15,8 +15,7 @@ where all **Tenant** ***compute resources*** consist of **Incus 'System'** or **
 **Reference:**    
 **[https://linuxcontainers.org/incus/docs/main/](https://linuxcontainers.org/incus/docs/main/)**   
 
----
-<br><### Prerequisites
+### Prerequisites
 - Create/update/upgrade the Servers/Hosts (Cloud or VM) that will be CIAB Nodes in the Mesh Network.    
 - ***Install & Initialize Incus***  (*incus admin init*) on *all Servers/Hosts for Tenant Compute Resources*.    
 
