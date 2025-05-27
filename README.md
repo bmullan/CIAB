@@ -3,8 +3,10 @@
 # CIAB MANO  
 ## Cloud in a Box, Management & Orchestration    
 <center> Brian Mullan (bmulla.mail@gmail.com) May 2025</center>  
-
-![ciab-logo](https://github.com/bmullan/CIAB/blob/main/ciab-plain-hand.png?classes=float-left)
+<br></br>
+<br></br>
+[ciab-logo](https://github.com/bmullan/CIAB/blob/main/ciab-plain-hand.png?classes=float-left)
+<br></br>
 
 ---
 
