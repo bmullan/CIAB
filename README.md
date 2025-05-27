@@ -5,7 +5,7 @@
 <center> Brian Mullan (bmulla.mail@gmail.com) May 2025</center>  
 <br></br>
 <br></br>
-![ciab-logo](https://github.com/bmullan/CIAB/blob/main/ciab-plain-hand.png?classes=float-left)
+![ciab-logo](https://github.com/bmullan/CIAB/blob/main/ciab-logo.png?classes=float-left)
 <br></br>
 
 ---
