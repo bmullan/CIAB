@@ -6,7 +6,7 @@
 <br></br>
 <br></br>
 
-ciab-logo here
+https://github.com/bmullan/CIAB/blob/main/ciab-logo.png
 
 <br></br>
 ---
