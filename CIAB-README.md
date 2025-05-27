@@ -1,6 +1,7 @@
 # CIAB MANO  
-# Cloud in a Box, Management & Orchestration     
-<center>Brian Mullan (bmulla.mail@gmail.com) May 2025</center>  
+# Cloud in a Box, Management & Orchestration    
+
+<center> Brian Mullan (bmulla.mail@gmail.com) May 2025</center>  
 
 <br>
 ### Architecture Description  
