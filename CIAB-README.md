@@ -4,10 +4,10 @@
 ## Cloud in a Box, Management & Orchestration    
 <center> Brian Mullan (bmulla.mail@gmail.com) May 2025</center>  
 
-<center>
 ![ciab-logo](https://user-images.githubusercontent.com/1682855/51850975-ea4e3480-22f0-11e9-9128-d945e1e2a9ab.png?classes=float-left)
-</center>
-<br>
+
+---
+
 ### Architecture Description  
    
 CIAB MANO's use-case is to enable deployment of an Architecture that is:    
