@@ -16,8 +16,7 @@ where all **Tenant** ***compute resources*** consist of **Incus 'System'** or **
 **[https://linuxcontainers.org/incus/docs/main/](https://linuxcontainers.org/incus/docs/main/)**   
 
 ---
-<br></br>
-### Prerequisites
+<br><### Prerequisites
 - Create/update/upgrade the Servers/Hosts (Cloud or VM) that will be CIAB Nodes in the Mesh Network.    
 - ***Install & Initialize Incus***  (*incus admin init*) on *all Servers/Hosts for Tenant Compute Resources*.    
 
@@ -32,9 +31,6 @@ When **incus admin init** is executed for the following Questions answer as indi
 with Docker & other environments later be installed on any of the Incus Host servers as many of those  
 applications which often default to use of Port 8443.  
 
-<br></br>  
----  
-<br></br>
 
 ### MANO CLI commands:  
 
