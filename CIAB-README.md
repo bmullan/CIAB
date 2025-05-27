@@ -35,10 +35,9 @@ applications which often default to use of Port 8443.
 <br>  
 
 ---  
-
 <br>  
 
-### MANO commands:  
+### MANO CLI commands:  
 
        ./wg-cloud  [ host   ] [ install    ] [ cloud-fqdn ] = installs all necessary software to build up the Wireguard VPN Cloud service  
                    [ host   ] [ inst-caddy ] [ cloud-fqdn ] = installs web-proxy to build up the Wireguard VPN Cloud service   
